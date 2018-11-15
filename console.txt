@@ -1,0 +1,25 @@
+setInterval(function() {
+  if (typeof TOTAL_MEMORY !== 'undefined') {
+    try {
+      var totalMem = TOTAL_MEMORY/1024.0/1024.0;
+      var totalStack = TOTAL_STACK/1024.0/1024.0;
+      var static = (STATICTOP - STATIC_BASE)/1024.0/1024.0;
+      var dynamic = (DYNAMICTOP - DYNAMIC_BASE)/1024.0/1024.0;
+      console.log('Memory stats - stack: ' + Math.ceil(totalStack) + 'M' +
+                  ' static: ' + Math.ceil(static) + 'M' +
+                  ' dynamic: ' + Math.ceil(dynamic) + 'M');
+    } catch(e) {}
+  }
+}, 5000);
+
+setInterval(function() {
+  if (typeof TOTAL_MEMORY !== 'undefined') {
+    try {
+      var totalMem = TOTAL_MEMORY/1024.0/1024.0;
+      var usedMem = (TOTAL_STACK + (STATICTOP - STATIC_BASE)
+                                 + (DYNAMICTOP - DYNAMIC_BASE))/1024.0/1024.0;
+      console.log('Memory stats - used: ' + Math.ceil(usedMem) + 'M' +
+                  ' free: ' + Math.floor(totalMem - usedMem) + 'M');
+    } catch(e) {}
+  }
+}, 5000);
